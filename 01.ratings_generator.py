@@ -30,8 +30,10 @@ with open("ml-10M100K/ratings.dat", 'r') as fp:
     for line in fp:
         total += 1
         (user_id, movie_id, rating, ts) = line.split("::")
-        #msg = "{}::{}::{}::{}\n".format(user_id, movie_id, rating, time.time())
-        msg = "{}::{}::{}::{}\n".format(user_id, movie_id, rating, ts.rstrip())
+        # Real Info
+        #msg = "{}::{}::{}::{}\n".format(user_id, movie_id, rating, ts.rstrip())
+        # Limit movie IDs from 1-10
+        msg = "{}::{}::{}::{}\n".format(user_id, random.randint(1,50), random.randint(1,5), time.time())
         conn.sendall(msg)
         
         sys.stdout.write("Sending {}".format(msg))
